@@ -31,4 +31,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/k8s.cicd:latest
+          tags: ghcr.io/${{ github.repository_owner }}/sse-service:latest
