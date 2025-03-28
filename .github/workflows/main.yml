@@ -2,7 +2,7 @@ name: CI-CD to GHCR
 
 on:
   push:
-    branches: [ "main" ]  # main 브랜치에 push될 때만 동작 (원하시는 방식으로 변경 가능)
+    branches: ["main"] # main 브랜치에 push될 때만 동작 (원하시는 방식으로 변경 가능)
 
 jobs:
   build-and-push:
@@ -34,14 +34,14 @@ jobs:
           # 이미지 이름 - ghcr.io/<OWNER>/<REPO_OR_IMAGE_NAME>:<TAG>
           # github.repository => "OWNER/REPO" 형식. 예) "myname/sse-service"
           # 아래 예시처럼 "sse-service"를 이미지명으로 쓸 경우:
-          tags: ghcr.io/${{ github.repository }}/sse-service:latest
+          tags: ghcr.io/sungeunsong/sse-service:latest
 
           # GHCR에 로그인
           # GitHub Actions의 GITHUB_TOKEN 활용
           # (repo Settings > Actions > General 에서 "Read and write" 권한으로 설정해야 함)
           load: false
           labels: |
-            org.opencontainers.image.source=${{ github.repository }
+            org.opencontainers.image.source=${{ github.repository }}
           registry: ghcr.io
           # username: Defaults to github.actor if not set
           # password: GITHUB_TOKEN 이용
