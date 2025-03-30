@@ -30,6 +30,21 @@ app.get("/pingDB", async (req, res) => {
   }
 });
 
+app.get("/rs-status", async (req, res) => {
+  try {
+    const client = await MongoClient.connect(uri, { directConnection: true });
+    const adminDb = client.db("admin");
+
+    const result = await adminDb.command({ replSetGetStatus: 1 });
+
+    res.json(result);
+    await client.close();
+  } catch (err) {
+    console.error("MongoDB 연결 실패", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`SSE Service listening on port ${port}`);
