@@ -32,7 +32,9 @@ app.get("/pingDB", async (req, res) => {
 
 app.get("/rs-status", async (req, res) => {
   try {
-    const client = await MongoClient.connect(uri, { directConnection: true });
+    const client = await MongoClient.connect(mongoUrl, {
+      directConnection: true,
+    });
     const adminDb = client.db("admin");
 
     const result = await adminDb.command({ replSetGetStatus: 1 });
